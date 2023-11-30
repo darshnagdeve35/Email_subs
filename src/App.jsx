@@ -8,7 +8,7 @@ function App() {
   return (
     <>
       <form action="" method="post">
-        <label>bruh</label>
+        <label>Email</label>
         <input
           type="text"
           id="Email"
