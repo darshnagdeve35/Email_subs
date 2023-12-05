@@ -11,15 +11,12 @@ function App() {
 
   async function Onsubmit(e) {
     e.preventDefault();
-    console.log(Email + " " + Password);
+
     try {
       const SendRes = await axios.post(url, {
         Email: Email,
         Password: Password,
       });
-
-      const ResData = SendRes.data;
-      console.log(ResData);
     } catch (error) {
       console.error(error);
     }
