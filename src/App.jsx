@@ -1,55 +1,19 @@
-import { useState, useEffect, useRef } from "react";
-import "./App.css";
-import FirstReq from "./api/apiCall1";
-import axios from "axios";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Home from "./Pages/Home";
+import About from "./Pages/About";
+import More from "./Pages/More";
 
 function App() {
-  const [Email, setEmail] = useState("");
-  const [Password, setPassword] = useState("");
-
-  const url = "http://localhost:4000/";
-
-  async function Onsubmit(e) {
-    e.preventDefault();
-
-    try {
-      const SendRes = await axios.post(url, {
-        Email: Email,
-        Password: Password,
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   return (
     <>
-      <form onSubmit={Onsubmit}>
-        <label>Email</label>
-        <input
-          type="text"
-          id="Email"
-          value={Email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-        <br />
-        <label>text</label>
-        <input
-          type="text"
-          name="text"
-          id=""
-          value={Password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-        <br />
-        <button type="submit">Submit</button>
-        <br />
-        {/* <FirstReq /> */}
-      </form>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/more" element={<More />}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
