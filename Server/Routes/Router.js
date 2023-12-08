@@ -23,23 +23,21 @@ Router.get("/", (req, res) => {
 
 Router.post("/", async (req, res) => {
   const { Email, Password } = req.body;
-  console.log(req.body.Email + " " + req.body.Password);
 
   try {
-    const NewUser = new UserModel({ Email: Email, Password: Password });
+    const NewUser = await new UserModel({ Email: Email, Password: Password });
     const SaveUser = await NewUser.save();
     if (SaveUser) {
-      console.log("data saved success");
+      await console.log(SaveUser);
+      await res.json({
+        status: "success",
+        message: "Data saved successfully.",
+        user: {
+          email: Email,
+          password: Password,
+        },
+      });
     }
-  } catch (error) {
-    console.error(error);
-  }
-
-  try {
-    res.json({
-      email: Email,
-      password: Password,
-    });
   } catch (error) {
     console.error(error);
   }

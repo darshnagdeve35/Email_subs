@@ -20,7 +20,7 @@ function Home() {
           Email: Email,
           Password: Password,
         });
-        console.log("data send success");
+        console.log(SendRes.data); // get res.json data from server
       } catch (error) {
         console.error(error);
       }
@@ -38,6 +38,7 @@ function Home() {
           type="email"
           id="Email"
           value={Email}
+          autoComplete="email"
           onChange={(e) => {
             setEmail(e.target.value);
           }}
